@@ -1,8 +1,8 @@
 [user]
-  name = Samnang Chhun
-  email = samnang.chhun@gmail.com
+  name = Gordon DuQuesnay
+  email = gduquesnay@gmail.com
 [github]
-  user = samnang
+  user = gduquesnay
   token =
 [color]
   ui = true
@@ -21,7 +21,6 @@
   graph = log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --all --date=short
   cleanup = remote prune
 [core]
-  excludesfile = /Users/samnang/.gitignore_global
 [merge]
   tool = vimdiff
 [push]
