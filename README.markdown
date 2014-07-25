@@ -8,5 +8,4 @@ Run the following command from your terminal and enjoy the fireworks!
     brew install curl git the_silver_searcher
 
     curl https://raw.githubusercontent.com/gduquesnay/dotfiles/master/personal_installer.sh | sh
-    git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
     vim +BundleInstall +qall
