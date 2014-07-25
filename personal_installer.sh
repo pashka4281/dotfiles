@@ -6,8 +6,8 @@ curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-pro
 git clone https://github.com/gduquesnay/dotfiles.git ~/.dotfiles
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle
 
-
-ln -s ~/.dotfiles/vim ~/.vim
+mkdir .vim
+ln -s ~/.dotfiles/vim/colors ~/.vim/colors
 ln -s ~/.dotfiles/vimrc ~/.vimrc
 ln -s ~/.dotfiles/gvimrc ~/.gvimrc
 
