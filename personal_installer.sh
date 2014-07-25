@@ -3,7 +3,7 @@
 curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
 curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh -o ~/.git-prompt.sh
 
-git clone https://github.com:gduquesnay/dotfiles.git ~/.dotfiles
+git clone https://github.com/gduquesnay/dotfiles.git ~/.dotfiles
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle
 
 
