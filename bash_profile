@@ -17,8 +17,6 @@ fi
 
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
 
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
 function prompt {
 	local LIGHT_RED="\[\033[1;31m\]"
 	local LIGHT_GREEN="\[\033[1;32m\]"

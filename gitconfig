@@ -27,3 +27,5 @@
 	default = simple
 [heroku]
 	account = personal
+[core]
+	editor = vim

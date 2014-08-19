@@ -41,6 +41,12 @@ Bundle 'tpope/vim-haml'
 Bundle 'pangloss/vim-javascript'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'othree/html5.vim'
+Bundle 'slim-template/vim-slim.git'
+Bundle 'groenewege/vim-less'
+Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'michaeljsmith/vim-indent-object'
+Bundle 'rking/ag.vim'
+
 
 " *********************************************
 " *                 Settings                  *
@@ -71,7 +77,9 @@ set nofoldenable                  "dont fold by default
 
 set hidden                        " Handle multiple buffers better.
 set title                         " Set the terminal's title
+" setting both of these = hybrid line numbers
 set number                        " Show line numbers.
+set relativenumber                " Show relative line numbers.
 set ruler                         " Show cursor position.
 set cursorline                    " Highlight current line
 set wildmode=list:longest         " Complete files like a shell.
