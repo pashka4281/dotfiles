@@ -6,7 +6,7 @@ curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-pro
 git clone https://github.com/gduquesnay/dotfiles.git ~/.dotfiles
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle
 
-mkdir .vim
+mkdir .vim || echo '.vim directory exists already...continuing'
 ln -s ~/.dotfiles/vim/colors ~/.vim/colors
 ln -s ~/.dotfiles/vimrc ~/.vimrc
 ln -s ~/.dotfiles/gvimrc ~/.gvimrc
