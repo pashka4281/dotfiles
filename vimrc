@@ -46,7 +46,7 @@ Bundle 'groenewege/vim-less'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'michaeljsmith/vim-indent-object'
 Bundle 'rking/ag.vim'
-
+Bundle 'ecomba/vim-ruby-refactoring'
 
 " *********************************************
 " *                 Settings                  *
@@ -251,6 +251,7 @@ map \ :NERDTreeToggle<CR>
 " File tree browser showing current file - pipe (shift-backslash)
 map \| :NERDTreeFind<CR>
 
+let g:vroom_test_unit_command = 'test'
 let g:vroom_map_keys = 0
 let g:vroom_use_bundle_exec = 0
 silent! map <unique> <Leader>t :VroomRunTestFile<CR>
