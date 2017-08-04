@@ -4,55 +4,51 @@ filetype off                      " Necessary on some Linux distros for pathogen
 " *********************************************
 " *          Vundle - Vim Plugins             *
 " *********************************************
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " Let Vundle manage Vundle
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-rake'
-Bundle 'tpope/vim-bundler'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-endwise'
-Bundle 'scrooloose/nerdtree'
-Bundle 'kien/ctrlp.vim'
-Bundle 'msanders/snipmate.vim'
-Bundle 'ervandew/supertab'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/syntastic'
-Bundle 'Raimondi/delimitMate'
-Bundle 'vim-scripts/IndexedSearch'
-Bundle 'vim-scripts/L9.git'
-Bundle 'vim-scripts/matchit.zip'
-Bundle 'vim-scripts/AutoTag'
-Bundle 'godlygeek/tabular'
-Bundle 'skalnik/vim-vroom'
-Bundle 'majutsushi/tagbar'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'terryma/vim-expand-region'
-Bundle 'git://gist.github.com/287147.git'
-Bundle 't9md/vim-ruby-xmpfilter'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-endwise'
+Plugin 'scrooloose/nerdtree'
+Plugin 'kien/ctrlp.vim'
+Plugin 'msanders/snipmate.vim'
+Plugin 'ervandew/supertab'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/syntastic'
+Plugin 'Raimondi/delimitMate'
+Plugin 'vim-scripts/IndexedSearch'
+Plugin 'vim-scripts/L9.git'
+Plugin 'vim-scripts/matchit.zip'
+Plugin 'vim-scripts/AutoTag'
+Plugin 'godlygeek/tabular'
+Plugin 'majutsushi/tagbar'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'terryma/vim-expand-region'
+Plugin 'crusoexia/vim-monokai'
 
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'tpope/vim-cucumber'
-Bundle 'tpope/vim-haml'
-Bundle 'pangloss/vim-javascript'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'othree/html5.vim'
-Bundle 'slim-template/vim-slim.git'
-Bundle 'groenewege/vim-less'
-Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'michaeljsmith/vim-indent-object'
-Bundle 'rking/ag.vim'
-Bundle 'ecomba/vim-ruby-refactoring'
+
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'pangloss/vim-javascript'
+Plugin 'crusoexia/vim-javascript-lib'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'othree/html5.vim'
+Plugin 'groenewege/vim-less'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'michaeljsmith/vim-indent-object'
+Plugin 'rking/ag.vim'
+Plugin 'maksimr/vim-jsbeautify'
+call vundle#end()
 
 " *********************************************
 " *                 Settings                  *
 " *********************************************
 set encoding=utf-8
 syntax enable
+syntax on
 filetype plugin indent on         " load file type plugins + indentation
 
 set showcmd                       " Display incomplete commands.
@@ -79,7 +75,7 @@ set hidden                        " Handle multiple buffers better.
 set title                         " Set the terminal's title
 " setting both of these = hybrid line numbers
 set number                        " Show line numbers.
-set relativenumber                " Show relative line numbers.
+set rnu                           " Show relative line numbers.
 set ruler                         " Show cursor position.
 set cursorline                    " Highlight current line
 set wildmode=list:longest         " Complete files like a shell.
@@ -109,8 +105,9 @@ set laststatus=2                  " Show the status line all the time
 set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
 
 set t_Co=256                      " Set terminal to 256 colors
-set background=dark
-colorscheme Tomorrow-Night-Bright
+"set background=dark
+"colorscheme Tomorrow-Night-Bright
+colorscheme monokai
 
 autocmd FileType python setlocal tabstop=8 expandtab shiftwidth=4 softtabstop=4
 autocmd BufRead,BufNewFile *.thor set filetype=ruby
@@ -120,17 +117,17 @@ autocmd BufRead,BufNewFile *.thor set filetype=ruby
 " *********************************************
 
 " Find Cucumber's unused steps
-command! CucumberFindUnusedSteps :call CucumberFindUnusedSteps()
-function! CucumberFindUnusedSteps()
-  let olderrorformat = &l:errorformat
-  try
-    set errorformat=%m#\ %f:%l
-    cexpr system('bundle exec cucumber --no-profile --no-color --format usage --dry-run features \| grep "NOT MATCHED BY ANY STEPS" -B1 \| egrep -v "(--\|NOT MATCHED BY ANY STEPS)"')
-    cwindow
-  finally
-    let &l:errorformat = olderrorformat
-  endtry
-endfunction
+"command! CucumberFindUnusedSteps :call CucumberFindUnusedSteps()
+"function! CucumberFindUnusedSteps()
+  "let olderrorformat = &l:errorformat
+  "try
+    "set errorformat=%m#\ %f:%l
+    "cexpr system('bundle exec cucumber --no-profile --no-color --format usage --dry-run features \| grep "NOT MATCHED BY ANY STEPS" -B1 \| egrep -v "(--\|NOT MATCHED BY ANY STEPS)"')
+    "cwindow
+  "finally
+    "let &l:errorformat = olderrorformat
+  "endtry
+"endfunction
 
 " Ack current word in command mode
 function! AckGrep(word)
@@ -165,16 +162,16 @@ function! RenameFile()
     endif
 endfunction
 
-function! PryToggle()
-  let @a = "require 'pry'; binding.pry"
-  let wordsFromLine = getline('.')
-  if @a ==? wordsFromLine
-    normal dd
-  else
-    normal o
-    normal "ap
-  endif
-endfunction
+"function! PryToggle()
+  "let @a = "require 'pry'; binding.pry"
+  "let wordsFromLine = getline('.')
+  "if @a ==? wordsFromLine
+    "normal dd
+  "else
+    "normal o
+    "normal "ap
+  "endif
+"endfunction
 
 """ FocusMode
 function! ToggleFocusMode()
@@ -220,10 +217,10 @@ nmap go o<esc>
 nmap gO O<esc>
 
 " Shortcut for =>
-imap <C-l> <Space>=><Space>
+"imap <C-l> <Space>=><Space>
 
 " Convert old hash to new Ruby 1.9 syntax
-map <leader>: :%s/:\(\w\+\)\(\s*=>\s*\)/\1: /gc<CR>
+"map <leader>: :%s/:\(\w\+\)\(\s*=>\s*\)/\1: /gc<CR>
 
 " indent/unindent visual mode selection with tab/shift+tab
 vmap <tab> >gv
@@ -251,29 +248,29 @@ map \ :NERDTreeToggle<CR>
 " File tree browser showing current file - pipe (shift-backslash)
 map \| :NERDTreeFind<CR>
 
-let g:vroom_test_unit_command = 'test'
-let g:vroom_map_keys = 0
-let g:vroom_use_bundle_exec = 0
-silent! map <unique> <Leader>t :VroomRunTestFile<CR>
-silent! map <unique> <Leader>T :VroomRunNearestTest<CR>
-silent! map <unique> <Leader>w :!bundle exec cucumber --profile=wip<CR>
+"let g:vroom_test_unit_command = 'test'
+"let g:vroom_map_keys = 0
+"let g:vroom_use_bundle_exec = 0
+"silent! map <unique> <Leader>t :VroomRunTestFile<CR>
+"silent! map <unique> <Leader>T :VroomRunNearestTest<CR>
+"silent! map <unique> <Leader>w :!bundle exec cucumber --profile=wip<CR>
 
 nnoremap <silent> <F9> :TagbarToggle<CR>
 
 "Run Ruby code analyzer
-map <leader><leader> :RuboCop<cr>
+"map <leader><leader> :RuboCop<cr>
 
-imap <Leader>d <ESC>:call PryToggle()<CR>
-nmap <Leader>d :call PryToggle()<CR>
+"imap <Leader>d <ESC>:call PryToggle()<CR>
+"nmap <Leader>d :call PryToggle()<CR>
 
 " xmpfilter Terminal
-nmap <buffer> <F5> <Plug>(xmpfilter-run)
-xmap <buffer> <F5> <Plug>(xmpfilter-run)
-imap <buffer> <F5> <Plug>(xmpfilter-run)
+"nmap <buffer> <F5> <Plug>(xmpfilter-run)
+"xmap <buffer> <F5> <Plug>(xmpfilter-run)
+"imap <buffer> <F5> <Plug>(xmpfilter-run)
 
-nmap <buffer> <F4> <Plug>(xmpfilter-mark)
-xmap <buffer> <F4> <Plug>(xmpfilter-mark)
-imap <buffer> <F4> <Plug>(xmpfilter-mark)
+"nmap <buffer> <F4> <Plug>(xmpfilter-mark)
+"xmap <buffer> <F4> <Plug>(xmpfilter-mark)
+"imap <buffer> <F4> <Plug>(xmpfilter-mark)
 
 nnoremap <F1> :call ToggleFocusMode()<cr>
 
@@ -296,3 +293,9 @@ let g:gitgutter_eager = 0
 if filereadable(expand('~/.vimrc.local'))
   so ~/.vimrc.local
 endif
+
+autocmd FileType javascript vnoremap <buffer>  <c-f> :call RangeJsBeautify()<cr>
+autocmd FileType json vnoremap <buffer> <c-f> :call RangeJsonBeautify()<cr>
+autocmd FileType jsx vnoremap <buffer> <c-f> :call RangeJsxBeautify()<cr>
+autocmd FileType html vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
+autocmd FileType css vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
