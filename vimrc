@@ -4,7 +4,7 @@ filetype off                      " Necessary on some Linux distros for pathogen
 " *********************************************
 " *          Vundle - Vim Plugins             *
 " *********************************************
-set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=~/.vim/bundle/Vundle
 call vundle#begin()
 
 " Let Vundle manage Vundle
